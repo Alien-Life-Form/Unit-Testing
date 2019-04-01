@@ -247,6 +247,8 @@ mock.Object.someFunction();
 
 ### `get` Property
 
+Approach to make a property mockable if no interface is provided.
+
 ```C#
 public class Time {
   private double _hours;
@@ -262,6 +264,12 @@ public class Timer {
     }
   }
 }
+
+// Invalid setup on a non-virtual (overridable in VB) member: p => p.Keys
+Moq<Time> mockTime = new Moq<Time>();
+mockTime.SetupGet(p => p.Hours).Returns(5:00);
+Timer timer = new Timer();
+timer.checkTime(mockTime.Object);
 ```
 
 ```C#
@@ -292,7 +300,7 @@ public class Timer {
 }
 
 Moq<ICustomTime> mockTime = new Moq<ICustomTime>();
-mockTime.SetUp(m => m.getHours()).Returns(5:00);
+mockTime.Setup(m => m.getHours()).Returns(5:00);
 Timer timer = new Timer();
 timer.checkTime(mockTime.Object);
 ```
