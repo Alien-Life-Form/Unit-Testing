@@ -248,7 +248,7 @@ mock.Object.someFunction();
 ### `get` Property
 
 ```C#
-public class Time :ITime {
+public class Time {
   private double _hours;
   public double Hours {
     get { return _hours; }
@@ -256,8 +256,8 @@ public class Time :ITime {
 }
 
 public class Timer {
-  public checkTime(Time time){
-    if (time.Hours == 5:00){
+  public checkTime(Time time) {
+    if (time.Hours == 5:00) {
       ...
     }
   }
@@ -265,26 +265,26 @@ public class Timer {
 ```
 
 ```C#
-public interface ICustomTime{
+public interface ICustomTime {
   double getHours();
 }
 
 
-public class CustomTime : ICustomTime{
+public class CustomTime : ICustomTime {
 
   Time _time;
 
-  public CustomTime (Time time){
+  public CustomTime (Time time) {
     _time = time;
   }
   
-  public double getHours(){
+  public double getHours() {
     return _time.Hours;
   }
 }
 
 public class Timer {
-  public checkTime(ICustomTime time){
+  public checkTime(ICustomTime time) {
     if (time.getHours() == 5:00){
       ...
     }
