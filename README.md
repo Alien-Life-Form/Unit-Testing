@@ -244,3 +244,57 @@ mock.Setup(x => x.someOtherFunction()).Returns("Whatever I want");
 mock.Setup(x => x.someFunFunction()).Returns("Whatever I want");
 mock.Object.someFunction();
 ```
+
+### `get` Property
+
+```C#
+public class Time :ITime {
+  private double _hours;
+  public double Hours {
+    get { return _hours; }
+  }
+}
+
+public class Timer {
+  public checkTime(Time time){
+    if (time.Hours == 5:00){
+      ...
+    }
+  }
+}
+```
+
+```C#
+public interface ICustomTime{
+  double getHours();
+}
+
+
+public class CustomTime : ICustomTime{
+
+  Time _time;
+
+  public CustomTime (Time time){
+    _time = time;
+  }
+  
+  public double getHours(){
+    return _time.Hours;
+  }
+}
+
+public class Timer {
+  public checkTime(ICustomTime time){
+    if (time.getHours() == 5:00){
+      ...
+    }
+  }
+}
+
+Moq<ICustomTime> mockTime = new Moq<ICustomTime>();
+mockTime.SetUp(m => m.getHours()).Returns(5:00);
+Timer timer = new Timer();
+timer.checkTime(mockTime.Object);
+```
+
+
