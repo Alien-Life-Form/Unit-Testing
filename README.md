@@ -184,7 +184,7 @@ public void MethodTest()
 }
 ```
 
-### `Protected` Methods
+### `protected` Methods
 
 > `Protected()` is found in the `Moq.Protected` namespace. Also `ItExpr` is the same as `It`, but is used when mocking protected methods.
 
@@ -305,4 +305,37 @@ Timer timer = new Timer();
 timer.checkTime(mockTime.Object);
 ```
 
+### `private` Methods
 
+1. Test private method through public method
+  ```
+  Advantages
+    - Straightforward unit testing
+  
+  Disadvantages
+    - Need to understand the public method, while wanting to test the private method
+    - Not testing the smallest possible unit
+  ```
+
+2.Create a new separate class for the private method
+  ```
+  Advantages
+  - Private method is now a testable unit
+  
+  Disadvantages
+  - Unnecessary classes
+  ```
+
+3. Change the access modifier from `private` to `protected virtual`
+
+  ```
+  Advantages
+
+  - Testing the smallest possible unit
+  - Possible to use partial mocks
+  
+  Disadvantages
+  - Changing a private access to protected virtual
+    - Method will be inherited
+    - Method can be overriden
+  ```
